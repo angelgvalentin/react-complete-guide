@@ -70,7 +70,7 @@ const ExpenseForm = (props) => {
 
         const expenseData = {
             title: enteredTitle,
-            amount: enteredAmount,
+            amount: +enteredAmount,
             date: new Date(enteredDate),
         };
         props.onSaveExpenseData(expenseData); //this function is decalred in the parent component (NewExpense) of this component and passed down as a prop into this one. Through it we send the expenseData up to the parent component (NewExpense)
