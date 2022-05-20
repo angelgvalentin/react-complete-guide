@@ -77,7 +77,18 @@ const ExpenseForm = (props) => {
         setEnteredDate("");
         setEnteredAmount("");
         setEnteredTitle("");
+        formShowHandler();
     };
+
+    const [formVisible, setFormVisible] = useState(false);
+
+    const formShowHandler = () => {
+        setFormVisible(!formVisible);
+    };
+
+    if (formVisible === false) {
+        return <button onClick={formShowHandler}>Add New Expense</button>;
+    }
 
     return (
         <form onSubmit={submitHandler}>
@@ -95,7 +106,9 @@ const ExpenseForm = (props) => {
                     <input type="date" onChange={dateChangeHandler} min="2019-01-01" max="2022-12-31" value={enteredDate} />
                 </div>
             </div>
+
             <div className="new-expense__actions">
+                <button onClick={formShowHandler}>Cancel</button>
                 <button type="submit">Add Expense</button>
             </div>
         </form>
