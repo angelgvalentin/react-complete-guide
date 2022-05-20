@@ -77,18 +77,7 @@ const ExpenseForm = (props) => {
         setEnteredDate("");
         setEnteredAmount("");
         setEnteredTitle("");
-        formShowHandler();
     };
-
-    const [formVisible, setFormVisible] = useState(false);
-
-    const formShowHandler = () => {
-        setFormVisible(!formVisible);
-    };
-
-    if (formVisible === false) {
-        return <button onClick={formShowHandler}>Add New Expense</button>;
-    }
 
     return (
         <form onSubmit={submitHandler}>
@@ -108,7 +97,9 @@ const ExpenseForm = (props) => {
             </div>
 
             <div className="new-expense__actions">
-                <button onClick={formShowHandler}>Cancel</button>
+                <button type="cancel" onClick={props.onCancel}>
+                    Cancel
+                </button>
                 <button type="submit">Add Expense</button>
             </div>
         </form>
