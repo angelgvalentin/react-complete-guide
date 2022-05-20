@@ -1,9 +1,8 @@
-import {setDefaultResultOrder} from "dns";
 import React from "react";
 import {useState} from "react";
 import "./ExpenseForm.css";
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
     // Two ways of dealing with state.
     // setting stafe for every thing we mead to kepp track of like we do in the next three lines
 
@@ -53,17 +52,17 @@ const ExpenseForm = () => {
 
     const titleChangeHandler = (e) => {
         setEnteredTitle(e.target.value);
-        console.log("title is " + enteredTitle);
+        // console.log("title is " + enteredTitle);
     };
 
     const amountChangeHandler = (e) => {
         setEnteredAmount(e.target.value);
-        console.log("title is " + enteredAmount);
+        // console.log("title is " + enteredAmount);
     };
 
     const dateChangeHandler = (e) => {
         setEnteredDate(e.target.value);
-        console.log("title is " + enteredDate);
+        // console.log("title is " + enteredDate);
     };
 
     const submitHandler = (e) => {
@@ -72,8 +71,12 @@ const ExpenseForm = () => {
         const expenseData = {
             title: enteredTitle,
             amount: enteredAmount,
-            date: enteredDate,
+            date: new Date(enteredDate),
         };
+        props.onSaveExpenseData(expenseData); //this function is decalred in the parent component (NewExpense) of this component and passed down as a prop into this one. Through it we send the expenseData up to the parent component (NewExpense)
+        setEnteredDate("");
+        setEnteredAmount("");
+        setEnteredTitle("");
     };
 
     return (
@@ -81,15 +84,15 @@ const ExpenseForm = () => {
             <div className="new-expense__controls">
                 <div className="new-expense__control">
                     <label>Title</label>
-                    <input type="text" onChange={titleChangeHandler} />
+                    <input type="text" onChange={titleChangeHandler} value={enteredTitle} />
                 </div>
                 <div className="new-expense__control">
                     <label>Amount</label>
-                    <input type="number" onChange={amountChangeHandler} min="0.01" step="0.01" />
+                    <input type="number" onChange={amountChangeHandler} min="0.01" step="0.01" value={enteredAmount} />
                 </div>
                 <div className="new-expense__control">
                     <label>Date</label>
-                    <input type="date" onChange={dateChangeHandler} min="2019-01-01" max="2022-12-31" />
+                    <input type="date" onChange={dateChangeHandler} min="2019-01-01" max="2022-12-31" value={enteredDate} />
                 </div>
             </div>
             <div className="new-expense__actions">
