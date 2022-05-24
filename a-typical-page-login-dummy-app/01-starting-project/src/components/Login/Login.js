@@ -12,7 +12,15 @@ const Login = (props) => {
     const [formIsValid, setFormIsValid] = useState(false);
 
     useEffect(() => {
-        setFormIsValid(enteredEmail.includes("@") && enteredPassword.trim().length > 6);
+        const identifier = setTimeout(() => {
+            console.log("Checking form validity");
+            setFormIsValid(enteredEmail.includes("@") && enteredPassword.trim().length > 6);
+        }, 1000);
+
+        return () => {
+            console.log("cleanup"); //this is a clean up function
+            clearTimeout(identifier); //using this we are clearing all the timer that are started in ech keystroke. The whole point of this is to not have the form be validated and the state changed in each keystroke. It'll wait a specified amount of milliseconds after the user stops inputing to tho the validation and state change.
+        };
     }, [enteredEmail, enteredPassword]); // ? In the dependencies bracket we put in the things that we are using in the use effect. useEffect will run whenever this things go through a change.
 
     const emailChangeHandler = (event) => {
