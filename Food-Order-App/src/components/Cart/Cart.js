@@ -12,9 +12,13 @@ const Cart = (props) => {
 
     const hasItems = cartCtx.items.length > 0;
 
-    const cartItemRemoveHandler = (id) => {};
+    const cartItemRemoveHandler = (id) => {
+        cartCtx.removeItem(id);
+    };
 
-    const cartItemAddHandler = (item) => {};
+    const cartItemAddHandler = (item) => {
+        cartCtx.addItem({...item, amount: 1});
+    };
 
     // ! .bind() equivalent to using an arrow function for the event handlers so that they dont start automatically at bootup.
 
