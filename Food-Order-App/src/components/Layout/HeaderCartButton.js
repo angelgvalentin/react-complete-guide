@@ -2,7 +2,6 @@ import React from "react";
 import {useContext} from "react/cjs/react.development";
 import CartContext from "../../store/cart-context";
 
-import CartProvider from "../../store/CartProvider";
 import CartIcon from "../Cart/CartIcon";
 import classes from "./HeaderCartButton.module.css";
 
