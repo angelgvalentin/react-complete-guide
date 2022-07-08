@@ -10,7 +10,7 @@ function App() {
 
     const toggleParagraphHandler = useCallback(() => {
         if (allowToggle) {
-            setShowParagraph((previousShowParagraph) => !previousShowParagraph);
+            setShowParagraph((previousShowParagraph) => !previousShowParagraph); //using the function syntax is for when we are using the previous state in someway. In this case we need to use the previous state because we are setting to the opposite of what that previous state is.
         }
     }, [allowToggle]);
 
