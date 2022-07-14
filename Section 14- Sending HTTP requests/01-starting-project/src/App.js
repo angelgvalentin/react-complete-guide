@@ -1,6 +1,7 @@
 import React, {useEffect, useState, useCallback} from "react";
 
 import MoviesList from "./components/MoviesList";
+import AddMovie from "./components/AddMovie";
 import "./App.css";
 
 function App() {
@@ -13,7 +14,9 @@ function App() {
         setError(null);
 
         try {
-            const response = await fetch("https://swapi.dev/api/films/");
+            const response = await fetch(
+                "https://react-http-cdc3d-default-rtdb.firebaseio.com/movies.json"
+            );
             if (!response.ok) {
                 throw new Error("Something is wrong!");
             }
@@ -39,6 +42,10 @@ function App() {
         fetchMoviesHandler();
     }, [fetchMoviesHandler]);
 
+    const addMovieHandler = (movie) => {
+        console.log(movie);
+    };
+
     let content = <p>Found no movies.</p>;
 
     if (error) {
@@ -55,6 +62,9 @@ function App() {
 
     return (
         <React.Fragment>
+            <section>
+                <AddMovie onAddMovie={addMovieHandler} />
+            </section>
             <section>
                 <button onClick={fetchMoviesHandler}>Fetch Movies</button>
             </section>
