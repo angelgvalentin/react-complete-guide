@@ -1,6 +1,14 @@
 import useInput from "../hooks/useInput";
 
 const BasicForm = (props) => {
+    const fieldIsEmptyCheck = (value) => {
+        return value.trim() !== "";
+    };
+
+    const emailCheck = (value) => {
+        return value.includes("@");
+    };
+
     const {
         value: enteredName,
         isValid: nameIsValid,
@@ -8,7 +16,7 @@ const BasicForm = (props) => {
         valueChangeHandler: firstNameInputChangeHandler,
         inputBlurHandler: firstNameInputBlurHandler,
         reset: nameReset,
-    } = useInput((value) => value.trim() !== "");
+    } = useInput(fieldIsEmptyCheck);
 
     const {
         value: enteredLastName,
@@ -17,7 +25,7 @@ const BasicForm = (props) => {
         valueChangeHandler: lastNameInputChangeHandler,
         inputBlurHandler: lastNameInputBlurHandler,
         reset: lastNameReset,
-    } = useInput((value) => value.trim() !== "");
+    } = useInput(fieldIsEmptyCheck);
 
     const {
         value: enteredEmail,
@@ -26,7 +34,7 @@ const BasicForm = (props) => {
         valueChangeHandler: emailInputChangeHandler,
         inputBlurHandler: emailInputBlurHandler,
         reset: emailReset,
-    } = useInput((value) => value.includes("@"));
+    } = useInput(emailCheck);
 
     let formIsValid = false;
 
@@ -41,17 +49,17 @@ const BasicForm = (props) => {
         emailReset();
     };
 
-    const nameInputClasses = nameIsValid
-        ? "form-control"
-        : "form-control invalid";
+    const nameInputClasses = nameHasError
+        ? "form-control invalid"
+        : "form-control";
 
-    const lastNameInputClasses = lastNameIsValid
-        ? "form-control"
-        : "form-control invalid";
+    const lastNameInputClasses = lastNameHasError
+        ? "form-control invalid"
+        : "form-control";
 
-    const emailInputClasses = emailIsValid
-        ? "form-control"
-        : "form-control invalid";
+    const emailInputClasses = emailHasError
+        ? "form-control invalid"
+        : "form-control";
 
     return (
         <form onSubmit={formSubmissionHandler}>
