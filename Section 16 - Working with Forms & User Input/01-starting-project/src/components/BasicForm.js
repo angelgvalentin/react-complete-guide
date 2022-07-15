@@ -44,6 +44,11 @@ const BasicForm = (props) => {
 
     const formSubmissionHandler = (event) => {
         event.preventDefault();
+
+        if (!formIsValid) {
+            return;
+        }
+
         nameReset();
         lastNameReset();
         emailReset();
