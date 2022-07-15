@@ -49,6 +49,9 @@ const BasicForm = (props) => {
             return;
         }
 
+        console.log("Submitted");
+        console.log(enteredName, enteredLastName, enteredEmail);
+
         nameReset();
         lastNameReset();
         emailReset();
