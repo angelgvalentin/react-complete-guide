@@ -26,6 +26,19 @@ const Cart = (props) => {
         setIsCheckout(true);
     };
 
+    const submitOrderHandler = (userData) => {
+        fetch(
+            "https://react-http-cdc3d-default-rtdb.firebaseio.com/orders.json",
+            {
+                method: "POST",
+                body: JSON.stringify({
+                    user: userData,
+                    orderedItems: cartCtx.items,
+                }),
+            }
+        );
+    };
+
     // ! .bind() equivalent to using an arrow function for the event handlers so that they dont start automatically at bootup.
 
     const cartItems = (
@@ -65,7 +78,12 @@ const Cart = (props) => {
                 <span>Total Amount</span>
                 <span>{totalAmount}</span>
             </div>
-            {isCheckout && <Checkout onCancel={props.onClose} />}
+            {isCheckout && (
+                <Checkout
+                    onCancel={props.onClose}
+                    onConfirm={submitOrderHandler}
+                />
+            )}
             {!isCheckout && modalActions}
         </Modal>
     );
