@@ -31,10 +31,10 @@ const authSlice = createSlice({
     initialState: initialAuthState,
     reducers: {
         login(state) {
-            state.isAuthticated = true;
+            state.isAuthenticated = true;
         },
         logout(state) {
-            state.isAuthticated = false;
+            state.isAuthenticated = false;
         },
     },
 });
