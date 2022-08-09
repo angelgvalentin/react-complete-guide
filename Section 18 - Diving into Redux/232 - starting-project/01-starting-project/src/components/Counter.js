@@ -1,31 +1,30 @@
 import {Component} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import classes from "./Counter.module.css";
+import {counterActions} from "./store";
 
 const Counter = () => {
     const dispatch = useDispatch();
-    const counter = useSelector((state) => state.counter);
+    const counter = useSelector((state) => state.counter.counter);
     // when we use useSelector, react will automagicaly setup a subscription to the redux-store for this component. that means it will be updated an recieve the latest counter everytime the counter changes in the redux store. It will cause this componenet to be re evaluated to keep it updated.
 
-    const show = useSelector((state) => state.showCounter);
+    const show = useSelector((state) => state.counter.showCounter);
 
     const incrementHandler = () => {
         //an action is an object with a type property
-        dispatch({type: "increment"});
+        dispatch(counterActions.increment());
     };
 
     const increaseHandler = () => {
-        dispatch({type: "increase", amount: 10});
+        dispatch(counterActions.increase(10)); //redux toolkit will, autoamtically create an action object where the type is a unique identifeir and any extra value that we want to add will be store in an extra field called payload
     };
 
     const decrementHandler = () => {
-        dispatch({type: "decrement"});
+        dispatch(counterActions.decrement());
     };
 
     const toggleCounterHandler = () => {
-        dispatch({
-            type: "toggle",
-        });
+        dispatch(counterActions.toggleCounter());
     };
 
     return (
