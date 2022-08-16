@@ -25,7 +25,7 @@ const cartSlice = createSlice({
                     totalPrice: newItem.price,
                     name: newItem.title,
                 });
-                console.log(state.items[0]);
+                // console.log(state.items[0]);
                 // state.cartTotalPrice = state.cartTotalPrice + 1;
             } else {
                 existingItem.quantity++;

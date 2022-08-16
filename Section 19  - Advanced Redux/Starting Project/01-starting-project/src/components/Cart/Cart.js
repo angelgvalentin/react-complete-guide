@@ -8,7 +8,7 @@ const Cart = (props) => {
     const cartTotal = useSelector((state) => state.cart);
 
     // console.log(cartItems);
-    console.log(cartTotal);
+    // console.log(cartTotal);
 
     // const sumOfPrices = cartItems.map((item) => {
     //     return item.;
