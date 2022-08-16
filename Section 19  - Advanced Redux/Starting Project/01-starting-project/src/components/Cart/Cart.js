@@ -5,7 +5,7 @@ import CartItem from "./CartItem";
 
 const Cart = (props) => {
     const cartItems = useSelector((state) => state.cart.items);
-    const cartTotal = useSelector((state) => state.cart);
+    // const cartTotal = useSelector((state) => state.cart);
 
     // console.log(cartItems);
     // console.log(cartTotal);
@@ -33,7 +33,7 @@ const Cart = (props) => {
                         />
                     );
                 })}
-                <h2>Total Price: ${cartTotal.cartTotalPrice.toFixed(2)}</h2>
+                {/* <h2>Total Price: ${cartTotal.cartTotalPrice.toFixed(2)}</h2> */}
             </ul>
         </Card>
     );
