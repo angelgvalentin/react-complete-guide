@@ -25,7 +25,8 @@ const cartSlice = createSlice({
                     totalPrice: newItem.price,
                     name: newItem.title,
                 });
-                // console.log(state.items[0]);
+                // console.log(state.cartTotalPrice);
+
                 // state.cartTotalPrice = state.cartTotalPrice + 1;
             } else {
                 existingItem.quantity++;
@@ -33,16 +34,6 @@ const cartSlice = createSlice({
                     existingItem.totalPrice + newItem.price;
                 // state.cartTotalPrice = state.cartTotalPrice + 1;
             }
-
-            // ! Cant figure out how to get th etotal cart price to calculate.
-            // let updatedCartTotal = 0;
-
-            // for (let i = 0; i < state.items.length; i++) {
-            //     updatedCartTotal =
-            //         state.cartTotalPrice + state.items[i].totalPrice;
-            //     return updatedCartTotal;
-            // }
-            // console.log(state.cartTotalPrice);
         },
         removeItemFromCArt(state, action) {
             const id = action.payload;
